@@ -57,7 +57,8 @@ public class Flight {
   
    @ManyToOne
    @JoinColumn(name="airport_id")
-   private Airport airports;
+   @JsonIgnoreProperties({"airportId","code","flights"})
+   private Airport departureAirport;
    
    @OneToMany(mappedBy="flight")
    private List<Booking> bookings;
