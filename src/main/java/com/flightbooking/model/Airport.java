@@ -2,6 +2,7 @@ package com.flightbooking.model;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -9,6 +10,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -38,7 +41,8 @@ public class Airport {
 	@Column(name="code")
 	private String code;
 	
-	@OneToMany(mappedBy="airports")
-	private List<Flight> flights;
+	@OneToMany(mappedBy="departureAirport",cascade = CascadeType.ALL)
+	@JsonIgnoreProperties({"departureDate","arrivalDate","seatCapacity","price","availableSeats","departureAirport","bookings"})
+	private List<Flight> flight;
 	
 }

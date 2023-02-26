@@ -14,6 +14,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -50,14 +52,12 @@ public class Flight {
 
    @Column(name="destination")
    private String destination;
-	
-  
-   @Column(name="departure")
-   private String departure;   
+	 
   
    @ManyToOne
    @JoinColumn(name="airport_id")
-   private Airport airports;
+   @JsonIgnoreProperties({"airportId","code","flights"})
+   private Airport departureAirport;
    
    @OneToMany(mappedBy="flight")
    private List<Booking> bookings;
