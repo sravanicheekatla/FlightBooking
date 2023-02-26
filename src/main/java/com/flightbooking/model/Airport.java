@@ -39,6 +39,7 @@ public class Airport {
 	private String code;
 	
 	@OneToMany(mappedBy="airports")
+	@JsonIgnoreProperties({"departureDate","arrivalDate","seatCapacity","price","availableSeats","departureAirport","bookings"})
 	private List<Flight> flights;
 	
 }
