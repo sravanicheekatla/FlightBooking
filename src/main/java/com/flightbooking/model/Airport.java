@@ -38,8 +38,8 @@ public class Airport {
 	@Column(name="code")
 	private String code;
 	
-	@OneToMany(mappedBy="airports")
+	@OneToMany(mappedBy="departureAirport",cascade = CascadeType.ALL)
 	@JsonIgnoreProperties({"departureDate","arrivalDate","seatCapacity","price","availableSeats","departureAirport","bookings"})
-	private List<Flight> flights;
+	private List<Flight> flight;
 	
 }
